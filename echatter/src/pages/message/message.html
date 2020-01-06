@@ -1,0 +1,125 @@
+<ion-header id="header">
+    <ion-navbar>
+        <ion-list>
+            <ion-navbar>{{me}} <br>&nbsp;&nbsp;
+                <img src="{{myProfil}}" class="imgMe">
+                <span id="to">{{to}}&nbsp;&nbsp;
+                    <img src="{{toProfil}}" *ngIf="to" class="imgMe">
+                </span>
+                <span id="date" style="color: rgba(255, 255, 255, 0.1);">{{now | date:'dd MMMM yyy HH:mm'}}</span>
+                <!-- <span>today's date {{today}}</span> -->
+            </ion-navbar>
+            <ion-item>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToNotice()">
+                                            <ion-icon name="globe"></ion-icon><br>
+                                            <sub style="color:red;">{{notice}}</sub>
+                                        </button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Notification(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToMessage()"><ion-icon name="mail"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav" style="text-decoration: underline; font-weight: bolder;color: rgb(186, 206, 75);">
+                                Message(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToFriend()"><ion-icon name="contacts"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Friend(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToOptions()"><ion-icon name="apps"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Options
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-list>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-row>
+        <ion-item no-lines>
+            <ion-scroll scrollX="true" scroll-avatar>
+                <ion-avatar>
+                    <ion-grid>
+                        <ion-row style="background: rgba(74, 78, 74, 0.123);border-bottom: 1px solid black;">
+                            <ion-col col-10>
+                                <span *ngFor="let friend of friend_inline">
+                                          <button ion-button clear (click)="chatWith(friend.name,friend.profil)" color="dark">
+                                          <img src="{{friend.profil}}" class="scroll-item" >
+                                          <sup style="font-style:italic;font-weight: bolder;background-color: green;">{{friend.name}}</sup>
+                                          <sub style="color: rgb(238, 167, 36);font-size: 100%;">
+                                              <ion-icon name="mail" *ngIf="reception(friend.name)"></ion-icon>
+                                          </sub>
+                                          </button>
+                                      </span>
+
+                                <span *ngFor="let out of this.recept_msg_friend_outline">
+                                          <button ion-button clear (click)="chatWith(out.name,out.profil)" color="dark" *ngIf="isReallyOutline(out.name)">
+                                          <img src="{{out.profil}}" class="scroll-item" >
+                                          <sup style="font-style:italic;font-style:italic;font-weight:lighter;">{{out.name}}</sup>
+                                          <sub style="color: rgb(26, 24, 22);font-size: 100%;">
+                                              <ion-icon name="mail"></ion-icon>
+                                          </sub>
+                                          </button>
+                                      </span>
+                            </ion-col>
+                        </ion-row>
+
+                    </ion-grid>
+
+                </ion-avatar>
+
+            </ion-scroll>
+        </ion-item>
+    </ion-row>
+
+
+    <div *ngFor="let convers of conversation">
+        <p [ngClass]="{'recu': !isSent(convers.src),'envoi': isSent(convers.src)}">
+            {{convers.msg}}<br>
+            <span style="font-style: italic;color: rgb(139, 117, 117);font-size: 10px;">{{convers.date}}</span>
+        </p>
+    </div>
+
+    <!-- <ion-list>
+      <ion-item>
+          <ion-label floating>Enter your name...</ion-label>
+          <ion-input [(ngModel)]="name" type="text"></ion-input>
+      </ion-item>
+  </ion-list>
+  <button ion-button primary (click)="checkName()">Enter</button> -->
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+                <ion-input type="text" [(ngModel)]="this.message"></ion-input>
+
+                <button ion-button icon-only (click)="sendMessage()">
+                              <ion-icon name="send"></ion-icon>
+              </button>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

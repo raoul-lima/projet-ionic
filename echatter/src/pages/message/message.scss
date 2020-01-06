@@ -1,0 +1,66 @@
+page-message {
+    .imgMe {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+    }
+    .icon_nav {
+        font-size: 60px;
+    }
+    .label_nav {
+        font-size: 10px;
+    }
+    #to {
+        float: right;
+        font-weight: bolder;
+        font-style: italic;
+    }
+    .recu {
+        background-color: rgba(22, 26, 214, 0.925);
+        margin: 7x;
+        padding: 7px;
+        border-radius: 5px;
+        width: 45%;
+        float: right;
+        clear: both;
+        -webkit-transform: rotate(0deg) skew(0deg);
+        transform: rotate(0deg) skew(0deg);
+    }
+    .envoi {
+        background-color: rgba(189, 177, 177, 0.678);
+        margin: 7x;
+        padding: 7px;
+        border-radius: 5px;
+        width: 45%;
+        right: 5px;
+        clear: both;
+        -webkit-transform: rotate(0deg) skew(0deg);
+        transform: rotate(0deg) skew(0deg);
+    }
+    ion-footer ion-input {
+        background: rgba(20, 20, 20, 0.082);
+        color: rgb(7, 7, 7);
+    }
+    ion-scroll[scrollX] {
+        white-space: nowrap;
+        height: 80px;
+        overflow: hidden;
+        .scroll-item {
+            display: inline-block;
+        }
+        .selectable-icon {
+            margin: 10px 20px 10px 20px;
+            color: red;
+            font-size: 100px;
+        }
+        ion-avatar img {
+            margin: 8px;
+        }
+    }
+    ion-scroll[scroll-avatar] {
+        height: 100px;
+    }
+     ::-webkit-scrollbar {
+        display: none;
+    }
+}

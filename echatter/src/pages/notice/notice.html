@@ -1,0 +1,68 @@
+<ion-header id="header">
+    <ion-navbar>
+        <ion-list class="menu">
+            <ion-navbar>
+                {{me}} <br>&nbsp;&nbsp;
+                <img src="{{myProfil}}" class="imgMe">
+            </ion-navbar>
+            <ion-item>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToNotice()">
+                                    <ion-icon name="globe"></ion-icon><br>
+                                    <!-- <sub style="color:red;">{{notice}}</sub> -->
+                                </button>
+                            </ion-row>
+                            <ion-row class="label_nav" style="text-decoration: underline; font-weight: bolder;color: rgb(186, 206, 75);">
+                                Notification(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToMessage()"><ion-icon name="mail"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Message(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToFriend()"><ion-icon name="contacts"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Friend(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToOptions()"><ion-icon name="apps"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Options
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-list>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-grid>
+        <ion-row *ngFor="let notif of notification">
+            <ion-item class="content">
+                <ion-col col-5>
+                    <i>{{notif.date}}</i>
+                </ion-col>
+                <ion-col col-7>
+                    <b>{{notif.msg}}</b>
+                </ion-col>
+            </ion-item>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

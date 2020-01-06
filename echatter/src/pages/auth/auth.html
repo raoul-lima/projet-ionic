@@ -1,0 +1,123 @@
+<ion-header>
+    <p style="text-align: center;">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    Let's Chat together
+                </ion-col>
+                <ion-col>
+                    <ion-row style="font-weight: bolder;">
+                        | With e-chatter
+                    </ion-row>
+                    <ion-row style="color: grey;">
+                        | With the world
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </p>
+</ion-header>
+
+<ion-content padding class="authContent">
+    <h3 class="titre">
+        e-Chatter
+    </h3>
+    <p class="ligneTitre">...</p>
+    <br>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <ion-slides autoplay="1300" loop="true">
+                    <ion-slide>
+                        <img src="op1.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op2.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op3.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op4.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op5.jpg" class="img_slide">
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+            <ion-col col-6>
+                <ion-slides autoplay="1300" loop="true">
+                    <ion-slide>
+                        <img src="op1.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op2.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op3.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op4.jpg" class="img_slide">
+                    </ion-slide>
+                    <ion-slide>
+                        <img src="op5.jpg" class="img_slide">
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <br>
+    <!-- <p style="font-style: italic;font-size: 12px;">
+      Cette application est en version <span style="color: blue;">beta</span> ,Mais soyez rassurant, les meilleurs developpeurs la concue pour Vous !!!
+      <br> Merci d'avance ....
+  </p> -->
+
+
+    <br><br>
+    <div style="text-align: center;">
+        <button ion-button round (click)="clickConnect()" style="background-color: green;">
+                  Se Connecter
+      </button>
+        <div style="background-color: rgba(33, 36, 33, 0.281);" *ngIf=connexion>
+            <ion-grid>
+                <ion-row>
+                    <ion-label><i>Username :</i></ion-label>
+                    <ion-input type="text" style="background-color: rgba(24, 23, 23, 0.5); color:whitesmoke; font-weight: bolder;" [(ngModel)]=username>
+                    </ion-input>
+                </ion-row>
+                <ion-row>
+                    <ion-label><i>Password :</i></ion-label>
+                    <ion-input type="password" style="background-color: rgba(24, 23, 23, 0.5); color:whitesmoke;font-weight: bolder;" [(ngModel)]=password>
+                    </ion-input>
+                </ion-row>
+                <button ion-button style="background-color: rgb(10, 10, 10, 0.5);" (click)="loginUser()">
+      <ion-icon name="plane">  &nbsp;&nbsp;Go  </ion-icon>
+      </button>
+            </ion-grid>
+            <span style="color: rgb(184, 40, 40)">{{errorMessage}}</span>
+        </div>
+    </div>
+
+
+    <p style="text-align: center;">---------- OR ---------- </p>
+    <button ion-button clear full style="color: rgb(5, 5, 43);" (click)="addAccount()">
+      Add an Account
+  </button>
+
+</ion-content>
+
+<ion-footer>
+    <div class="logo_web">
+        <button ion-button clear icon-only><ion-icon name="logo-facebook"></ion-icon></button>
+        <button ion-button clear icon-only><ion-icon name="logo-google"></ion-icon></button>
+        <button ion-button clear icon-only><ion-icon name="logo-twitter"></ion-icon></button>
+        <button ion-button clear icon-only><ion-icon name="logo-skype"></ion-icon></button>
+        <br>
+        <span style="font-family: Arial, Helvetica, sans-serif; font-style: italic; font-size: 10px;">
+    &copy; 2019 Ionic Project | Third Degree to be engineer ..
+  </span>
+    </div>
+
+</ion-footer>

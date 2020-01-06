@@ -1,0 +1,32 @@
+page-apropos {
+    .content {
+        background-color: black;
+        color: white;
+        font-size: 14px;
+        border-top: 20px solid white;
+        border-left: 20px solid white;
+        border-right: 20px solid white;
+    }
+    .ion-title {
+        text-align: center;
+        float: right;
+    }
+    .img-dvlp {
+        width: 80px;
+        height: 80px;
+    }
+    h1 {
+        font-style: italic;
+        font-weight: bolder;
+        border-bottom: 2px double rgb(133, 129, 129);
+        text-align: center;
+        font-size: 20px;
+    }
+    .raison {
+        font-size: 10px;
+        float: right;
+    }
+    .footer {
+        text-align: center;
+    }
+}

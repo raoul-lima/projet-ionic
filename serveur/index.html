@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Super Chat temps réel !</title>
+    <style>
+        #zone_chat {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.678);
+            padding: 10px;
+            margin: 5px;
+            height: 500px;
+        }
+        
+        #titre {
+            color: rgb(236, 140, 13);
+            border-bottom: 5px double black;
+            border-width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="titre">
+        <span style="font-size: 10px;font-style: italic;">welcome ...</span> <br> Group-Chat
+    </h1>
+
+    <div id="formulaire_chat">
+        <input type="text" name="message" id="message" placeholder="Votre message..." size="50" autofocus />
+        <input type="button" id="envoi_message" value="Envoyer" onclick="send()" />
+    </div>
+    <br><br>
+    <p id="zone_chat">
+
+    </p>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Connexion à socket.io
+        var socket = io.connect('http://localhost:8080');
+
+        // On demande le pseudo, on l'envoie au serveur et on l'affiche dans le titre
+        var pseudo = prompt('Quel est votre pseudo ?');
+        socket.emit('new_client', pseudo);
+        document.title = pseudo + ' - ' + document.title;
+
+        // Quand on reçoit un message, on l'insère dans la page
+        socket.on('message', function(data) {
+            insereMessage(data.pseudo, data.message)
+        })
+
+        // Quand un nouveau client se connecte, on affiche l'information
+        socket.on('new_client', function(pseudo) {
+            //alert('new client => ' + pseudo);
+            //$('#zone_chat').prepend('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
+            var msg = document.getElementById('zone_chat').innerHTML;
+            document.getElementById('zone_chat').innerHTML = "<span>" + msg + "</span><br><p style=\"text-align: center;font-style: italic;text-align:center;\"><b><span style=\"color:blue;\">" + pseudo + "</span></b> a rejoint le chat</p>";
+        })
+
+        // Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
+
+
+
+        function send() {
+
+            var message = document.getElementById('message').value;
+            socket.emit('message', message); // Transmet le message aux autres
+            insereMessage(pseudo, message); // Affiche le message aussi sur notre page
+            document.getElementById('message').value = ' '; // Vide la zone de Chat et remet le focus dessus
+            //return false; // Permet de bloquer l'envoi "classique" du formulaire
+        }
+
+        // Ajoute un message dans la page
+        function insereMessage(pseudo, message) {
+            //$('#zone_chat').prepend('<p><strong>' + pseudo + '</strong> ' + message + '</p>');
+            //alert(pseudo + ' ' + message);
+            var msg = document.getElementById('zone_chat').innerHTML;
+            document.getElementById('zone_chat').innerHTML = "<span>" + msg + "</span><br><span>" + pseudo + " : " + message + "</span>";
+        }
+
+        function ss() {
+            var msg = document.getElementById('message').value;
+            alert(msg);
+        }
+    </script>
+</body>
+
+</html>

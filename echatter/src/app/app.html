@@ -1,0 +1,56 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Options</ion-title>
+        </ion-toolbar>
+        <style>
+            button:hover {
+                background-color: rgba(70, 5, 221, 0.897);
+                color: rgb(207, 191, 191);
+            }
+            
+            button:active {
+                background-color: rgba(55, 55, 216, 0.712);
+                color: rgb(207, 191, 191);
+            }
+        </style>
+    </ion-header>
+    <ion-content style="background: rgba(54, 52, 52, 0.151);">
+        <ion-list>
+            <button ion-item icon-start (click)="callPopover($event)">
+                        <ion-icon name="call"></ion-icon>
+                        Appel Téléphonique
+            </button>
+            <ion-item-divider></ion-item-divider>
+            <button ion-item icon-start (click)="smsPopover($event)">
+                        <ion-icon name="mail"></ion-icon>
+                        Envoi SMS
+            </button>
+            <ion-item-divider></ion-item-divider>
+            <button ion-item icon-start (click)="share()">
+                    <ion-icon name="share"></ion-icon>
+                    Partage
+        </button>
+            <ion-item-divider></ion-item-divider>
+            <button ion-item icon-start (click)="deconnect()">
+                <ion-icon name="log-out"></ion-icon>
+                Deconnexion
+            </button>
+            <ion-item-divider style="color: black;background:rgb(223, 218, 211);">
+                <ion-list>
+                    <button ion-item icon-start (click)="moi()">
+                            <ion-icon name="contact"></ion-icon>
+                            Mes infos
+                    </button>
+                    <button ion-item icon-start (click)="Apropos()">
+                            <ion-icon name="apps"></ion-icon>
+                            A propos
+                    </button>
+                </ion-list>
+
+            </ion-item-divider>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

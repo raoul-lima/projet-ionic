@@ -1,0 +1,10 @@
+<ion-list>
+    <ion-item>
+        <ion-label>Number :</ion-label>
+        <ion-input type="text" aria-placeholder="+261 .. ... .." [(ngModel)]="number"></ion-input>
+    </ion-item>
+</ion-list>
+<button ion-button color="secondary" (click)="call()">
+  <ion-icon name="call" icon-start></ion-icon>&nbsp;&nbsp;
+  Call
+</button>

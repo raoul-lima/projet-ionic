@@ -1,0 +1,21 @@
+page-moi {
+    .photo {
+        text-align: center;
+        border: 10px solid white;
+    }
+    .nom {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+    .img {
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+    }
+    .img-friend {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+}

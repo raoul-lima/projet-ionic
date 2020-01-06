@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <h1 class="titreAddAccount">new account</h1>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="authContent">
+    <form [formGroup]="accountForm" (ngSubmit)="onAddUser()">
+        <ion-item-divider>
+            <p class="divider">Confidentiel</p>
+        </ion-item-divider>
+        <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" formControlName="username" [(ngModel)]="username"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <p style="text-align: center;">---------------------------------</p>
+
+        <ion-item-divider>
+            <p class="divider">Personnel</p>
+        </ion-item-divider>
+        <ion-item>
+            <ion-input type="text" placeholder="pseudo" formControlName="pseudo" [(ngModel)]="pseudo"></ion-input>
+
+        </ion-item>
+        <p style="color: rgb(184, 40, 40);">{{errorMessage}}</p>
+        <br><br>
+
+        <ion-item-divider>
+            <p class="divider">Votre Photo de Profil</p>
+        </ion-item-divider>
+        <ion-item style="text-align: center;">
+            <ion-buttons>
+                <button ion-button color="primary" type="button" (click)="AccessGallery()">
+                  <ion-icon name="image"></ion-icon>&nbsp;A Importer
+                  </button>
+                <button ion-button color="primary" type="button" (click)="AccessCamera()">
+                        <ion-icon name="camera"></ion-icon>&nbsp;A Prendre
+                    </button>
+            </ion-buttons>
+            <img [src]="base64Image" *ngIf="base64Image" style="width: 250px;height: 250px;border: 5px solid black">
+        </ion-item>
+
+
+
+        <br>
+
+        <p style="background-image: url('inscription.jpeg');">
+            <button ion-button full round outline large type="submit" [disabled]="!accountForm.valid" style="color: rgba(0, 0, 0, 0.952);">
+                      Create Account          
+               </button>
+        </p>
+    </form>
+</ion-content>
+<ion-footer>
+    <button ion-button (click)="closeModal()" clear float-right style="color: rgb(0, 0, 0);">
+              &lt; retour
+      </button>
+</ion-footer>

@@ -1,0 +1,124 @@
+<ion-header id="header">
+    <ion-navbar>
+        <ion-list class="menu">
+            <ion-navbar>
+                {{me}} <br>&nbsp;&nbsp;
+                <img src="{{myProfil}}" class="imgMe">
+            </ion-navbar>
+
+            <ion-item>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToNotice()">
+                                    <ion-icon name="globe"></ion-icon><br>
+                                    <sub style="color:red;">{{notice}}</sub>
+                                </button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Notification(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToMessage()"><ion-icon name="mail"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Message(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToFriend()"><ion-icon name="contacts"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav" style="text-decoration: underline; font-weight: bolder;color: rgb(186, 206, 75);">
+                                Friend(s)
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-row class="icon_nav">
+                                <button ion-button clear (click)="goToOptions()"><ion-icon name="apps"></ion-icon></button>
+                            </ion-row>
+                            <ion-row class="label_nav">
+                                Options
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-list>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-8 push-1>
+                <ion-searchbar showCancelButton="true" (ionCancel)="cancelSearch()" (search)="onSearch($event)"></ion-searchbar>
+            </ion-col>
+            <ion-col col-1 push-2 style="font-size: 50%;">
+                <button ion-button round color="primary" (click)="showListRequest()">
+                  <ion-icon name="person-add"></ion-icon>
+                  &nbsp;&nbsp;
+                  <span style="color: orangered;">
+                          {{this.friendSrv.request_list}}
+                  </span>       
+              </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- <span>{{errorMessage}}</span> -->
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refesh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+
+    <ion-grid class="sous-menu">
+        <ion-row>
+            <ion-col *ngFor='let friend of friends; let i = index' padding col-11>
+                <ion-card>
+                    <ion-item *ngIf='!(friend.pseudo === this.me)'>
+                        <img src="{{friend.profil}}" class="imgUser" (click)="viewProfil(friend.pseudo,friend.profil)"> {{friend.pseudo}}
+                        <button ion-button float-right (click)="addFriend(friend.pseudo)" *ngIf="!isFriend(friend.pseudo)">
+                          <ion-icon name="person-add"></ion-icon>&nbsp;&nbsp;
+                  Add ...
+                  </button>
+
+                        <button ion-button float-right color="secondary" (click)="contact(friend.pseudo, friend.profil)" *ngIf="isFriend(friend.pseudo)">
+                          <ion-icon name="contact"></ion-icon>&nbsp;&nbsp;
+                          Amis !
+                  </button>
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-col *ngFor='let friend of data_sup; let i = index' padding col-11>
+              <ion-card>
+                  <ion-item *ngIf='!(friend === this.me)'>
+                      <img src="defaultImg.png" class="imgUser"> {{friend}}
+                      <button ion-button float-right (click)="addFriend(friend)" *ngIf="!isFriend(friend)">
+                              <ion-icon name="add-circle"></ion-icon>&nbsp;&nbsp;
+                      Add ...
+                      </button>
+
+                      <button ion-button float-right color="secondary" (click)="contact(friend)" *ngIf="isFriend(friend)">
+                              <ion-icon name="contact"></ion-icon>&nbsp;&nbsp;
+                              Amis !
+                      </button>
+                  </ion-item>
+              </ion-card>
+          </ion-col>
+      </ion-row> -->
+    </ion-grid>
+
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

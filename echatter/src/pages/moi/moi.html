@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <p id="date" style="color: rgba(255, 255, 255, 0.1);">{{now | date:'dd MMMM yyy HH:mm'}}</p>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div class="photo">
+        <img src="{{myProfil}}" class="img" (click)="viewProfil(me,myProfil)">
+        <p style="opacity: 0.8;position: absolute;top: 200px;right: 5px;">
+            <button ion-button small color="primary" style="font-size: 10px;" (click)="changeProfilPopover($event)">
+                  Changer profil
+            </button>
+        </p>
+    </div>
+    <div class="nom">{{me}}</div>
+
+    <ion-list>
+        <ion-item-divider>
+            List of friends :
+        </ion-item-divider>
+        <ion-item *ngIf="hasFriend === 0">
+            <p>no friend</p>
+        </ion-item>
+        <ion-item *ngFor="let friend of myFriends">
+            <img src="{{friend.profil}}" class="img-friend"> {{friend.name}}
+            <span style="float: right;">
+                <button ion-button icon-only float-right clear style="color: black;" (click)="deleteFriend(friend.name)">
+                    <ion-icon name="remove-circle"></ion-icon>
+                </button>
+            </span>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <button ion-button (click)="retour()" clear float-right style="color: rgb(0, 0, 0);">
+                &lt; retour
+        </button>
+</ion-footer>

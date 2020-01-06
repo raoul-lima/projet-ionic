@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Invitation</ion-title>
+        <p id="date" style="color: rgba(255, 255, 255, 0.1);">{{now | date:'dd MMMM yyy HH:mm'}}</p>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item *ngIf="this.friendSrv.request_list == 0">
+            <p>no invitation</p>
+        </ion-item>
+        <ion-item *ngFor="let list of list_request">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-4>
+                        <img src="{{list.profil}}" class="imgUser"> {{list.src}}
+                    </ion-col>
+
+                    <ion-col col-8 push-4>
+                        <button ion-button icon-left small *ngIf="!isFriend(list.src)" (click)="acceptFriend(list.src)">
+                        <ion-icon name="person-add"></ion-icon>
+                        Accept
+                      </button>
+                        <button ion-button small color="secondary" *ngIf="isFriend(list.src)">
+                          Done
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+    <button ion-button (click)="closeModal()" clear float-right style="color: rgb(0, 0, 0);">
+              &lt; retour
+      </button>
+</ion-footer>
